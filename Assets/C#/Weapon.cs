@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private float offset;
+    [SerializeField] private float offset = -90f;
 
     private void Update()
     {

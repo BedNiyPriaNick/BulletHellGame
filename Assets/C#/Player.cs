@@ -10,8 +10,6 @@ public class Player : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 moveVelocity;
 
-    private Vector2 pos;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,7 +17,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        pos = Camera.main.WorldToScreenPoint(transform.position);
         Walk();
         Flip();
     }
@@ -38,9 +35,7 @@ public class Player : MonoBehaviour
     }
     void Flip()
     {
-        if (Input.mousePosition.x < pos.x)
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
-        else
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
+        if(moveInput.x > 0)
+            transform.
     }
 }
