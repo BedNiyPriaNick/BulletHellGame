@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 moveVelocity;
 
+    [SerializeField] private GameObject sprite;
+    [SerializeField] private bool faceRight = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,11 +22,20 @@ public class Player : MonoBehaviour
     {
         Walk();
         Flip();
+
+        if (faceRight == false && moveInput.x > 0)
+        {
+            Flip();
+        }
+        else if (faceRight == true && moveInput.x < 0)
+        {
+            Flip();
+        }
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+        //rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
     }
 
     void Walk()
@@ -35,7 +47,9 @@ public class Player : MonoBehaviour
     }
     void Flip()
     {
-        if(moveInput.x > 0)
-            transform.
+        faceRight = !faceRight;
+        Vector3 Scaler = sprite.transform.localScale;
+        Scaler.x *= -1f;
+        sprite.transform.localScale = Scaler;
     }
 }
